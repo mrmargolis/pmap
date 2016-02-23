@@ -105,8 +105,9 @@ module PMap
         each_with_index do |item, index|
           pool.schedule(item, index, &proc)
         end
-        pool.shutdown
         self
+      ensure
+        pool.shutdown if pool 
       end
 
       # @see PMap#flat_pmap
